@@ -131,8 +131,8 @@ static unsigned int pcba_ver;
 static int gpio_dock_in = 0;
 
 // tmtmtm: also modify 'export KBUILD_BUILD_USER=timur-usbhost-fi-2013-01-01
-static int fixed_install_mode = 0;
-volatile int smb347_deep_sleep = 0;  // imported by ehci-tegra.c
+static int fixed_install_mode = 1;
+volatile int smb347_deep_sleep = 1;  // imported by ehci-tegra.c
 static volatile int host_mode_charging_state = 0;
 static volatile int lastExternalPowerState = 0;
 static volatile int lastOtgState = 0;
@@ -430,7 +430,7 @@ error:
 	return ret;
 }
 
-static int smb347_charger_enable(bool enable)
+int smb347_charger_enable(bool enable)
 {
 	struct i2c_client *client = charger->client;
 	u8 ret = 0;
